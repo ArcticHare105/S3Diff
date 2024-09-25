@@ -1,0 +1,6 @@
+sf: 4
+
+validation:
+  lr_path: path_to_LR_image_folder
+  io_backend:
+    type: disk
