@@ -40,7 +40,7 @@
 ## <a name="todo"></a>:hourglass: TODO
 
 - [x] Release Code :computer:
-- [ ] Release Checkpoints :link:
+- [x] Release Checkpoints :link:
 
 ## <a name="abstract"></a>:fireworks: Abstract
 
