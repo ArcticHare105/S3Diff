@@ -2,6 +2,7 @@
 
 <div align="center">
 
+<a href="https://arxiv.org/abs/2409.17058"><img src="https://img.shields.io/badge/ArXiv-2409.17058-red"></a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://visitor-badge.laobi.icu/badge?page_id=ArcticHare105/S3Diff" alt="visitors">
 </p>
 
