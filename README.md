@@ -101,7 +101,11 @@ sh run_training.sh
 
 #### Step1: Download datasets for inference
 
-#### Step2: Inference for S3Diff
+#### Step2: Download the pretrained models
+
+Download the pretrained model [SD-Turbo](https://huggingface.co/stabilityai/sd-turbo) and [S3Diff](https://drive.google.com/drive/folders/1cWYQYRFpadC4K2GuH8peg_hWEoFddZtj?usp=sharing)
+
+#### Step3: Inference for S3Diff
 
 Please modify the paths to datasets in `configs/sr_test.yaml` and the paths to pretrained model, saved checkpoints, and GT folder in `run_inference.sh`
 Then run:
