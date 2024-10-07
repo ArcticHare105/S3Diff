@@ -83,7 +83,6 @@ conda env create -f environment.yaml
 
 :star: Since we employ peft in our code, we highly recommend following the provided environmental requirements, especially regarding diffusers.
 
-
 ## <a name="training"></a> :wrench: Training
 
 #### Step1: Download the pretrained models
@@ -101,7 +100,7 @@ Then run:
 sh run_training.sh
 ```
 
-If you need to conduct offline training, modify `run_training.sh` as follows, and fill in with your paths:
+If you need to conduct offline training, modify `run_training.sh` as follows, and fill in `sd_path` with your local path:
 
 ```bash
 accelerate launch --num_processes=4 --gpu_ids="0,1,2,3" --main_process_port 29300 src/train_s3diff.py \
@@ -113,8 +112,6 @@ accelerate launch --num_processes=4 --gpu_ids="0,1,2,3" --main_process_port 2930
     --enable_xformers_memory_efficient_attention \
     --viz_freq 25
 ```
-
-and the paths to pretrained model in `run_training.sh`
 
 ## <a name="inference"></a> 💫 Inference
 
