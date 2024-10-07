@@ -103,7 +103,7 @@ sh run_training.sh
 
 #### Step2: Download the pretrained models
 
-Download the pretrained model [SD-Turbo](https://huggingface.co/stabilityai/sd-turbo) and [S3Diff](https://drive.google.com/drive/folders/1cWYQYRFpadC4K2GuH8peg_hWEoFddZtj?usp=sharing)
+Download the pretrained model [SD-Turbo](https://huggingface.co/stabilityai/sd-turbo) and S3Diff [[HuggingFace](https://huggingface.co/zhangap/S3Diff) | [GoogleDrive](https://drive.google.com/drive/folders/1cWYQYRFpadC4K2GuH8peg_hWEoFddZtj?usp=sharing)]
 
 #### Step3: Inference for S3Diff
 
