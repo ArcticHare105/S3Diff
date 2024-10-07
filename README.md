@@ -89,7 +89,7 @@ conda env create -f environment.yaml
 We enable automatic model download in our code, if you need to conduct offline training, download the pretrained model [SD-Turbo](https://huggingface.co/stabilityai/sd-turbo)
 
 #### Step2: Prepare training data
-We train the S3Diff on [LSDIR](https://github.com/ofsoundof/LSDIR), following [SeeSR](https://github.com/cswry/SeeSR) and [OSEDiff](https://github.com/cswry/OSEDiff).
+We train the S3Diff on [LSDIR](https://github.com/ofsoundof/LSDIR) + 10K samples from [FFHQ](https://github.com/NVlabs/ffhq-dataset), following [SeeSR](https://github.com/cswry/SeeSR) and [OSEDiff](https://github.com/cswry/OSEDiff).
 
 #### Step3: Training for S3Diff
 
