@@ -170,23 +170,31 @@ def main(args):
             )
 
         im_lr_resize = im_lr_resize.contiguous() 
-        im_lr_resize = im_lr_resize * 2 - 1.0
-        im_lr_resize = torch.clamp(im_lr_resize, -1.0, 1.0)
-        resize_h, resize_w = im_lr_resize.shape[2:]
+        im_lr_resize_norm = im_lr_resize * 2 - 1.0
+        im_lr_resize_norm = torch.clamp(im_lr_resize_norm, -1.0, 1.0)
+        resize_h, resize_w = im_lr_resize_norm.shape[2:]
 
         B = im_lr_resize.size(0)
         with torch.no_grad():
             # forward pass
             deg_score = net_de(im_lr)
-
             pos_tag_prompt = [args.pos_prompt for _ in range(B)]
             neg_tag_prompt = [args.neg_prompt for _ in range(B)]
-
-            x_tgt_pred = accelerator.unwrap_model(net_sr)(im_lr_resize, deg_score, pos_prompt=pos_tag_prompt, neg_prompt=neg_tag_prompt)
+            x_tgt_pred = accelerator.unwrap_model(net_sr)(im_lr_resize_norm, deg_score, pos_prompt=pos_tag_prompt, neg_prompt=neg_tag_prompt)
             x_tgt_pred = x_tgt_pred[:, :, :resize_h, :resize_w]
             out_img = (x_tgt_pred * 0.5 + 0.5).cpu().detach()
 
         output_pil = transforms.ToPILImage()(out_img[0])
+
+        if args.align_method == 'nofix':
+            output_pil = output_pil
+        else:
+            im_lr_resize = transforms.ToPILImage()(im_lr_resize[0].cpu().detach())
+            if args.align_method == 'wavelet':
+                output_pil = wavelet_color_fix(output_pil, im_lr_resize)
+            elif args.align_method == 'adain':
+                output_pil = adain_color_fix(output_pil, im_lr_resize)
+
         fname, ext = os.path.splitext(name)
         outf = os.path.join(args.output_dir, fname+'.png')
         output_pil.save(outf)
@@ -199,7 +207,6 @@ def main(args):
 
     gc.collect()
     torch.cuda.empty_cache()
-
 
 if __name__ == "__main__":
     args = parse_args_paired_testing()
