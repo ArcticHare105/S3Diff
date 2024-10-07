@@ -66,7 +66,7 @@ def parse_args_paired_testing(input_args=None):
     parser.add_argument("--neg_prompt", type=str, default="oil painting, cartoon, blur, dirty, messy, low quality, deformation, low resolution, oversmooth")
 
     # training details
-    parser.add_argument("--output_dir", required=True)
+    parser.add_argument("--output_dir", type=str, default='output/')
     parser.add_argument("--cache_dir", default=None,)
     parser.add_argument("--seed", type=int, default=None, help="A seed for reproducible training.")
     parser.add_argument("--resolution", type=int, default=512,)
