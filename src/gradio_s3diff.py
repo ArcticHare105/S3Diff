@@ -1,6 +1,7 @@
 import gradio as gr
 import os
 import sys
+import math
 from typing import List
 
 import numpy as np
@@ -82,6 +83,10 @@ def process(
     im_lr_resize_norm = torch.clamp(im_lr_resize_norm, -1.0, 1.0)
     resize_h, resize_w = im_lr_resize_norm.shape[2:]
 
+    pad_h = (math.ceil(resize_h / 64)) * 64 - resize_h
+    pad_w = (math.ceil(resize_w / 64)) * 64 - resize_w
+    im_lr_resize_norm = F.pad(im_lr_resize_norm, pad=(0, pad_w, 0, pad_h), mode='reflect')
+      
     try:
         with torch.autocast("cuda"):
             deg_score = net_de(im_lr)
