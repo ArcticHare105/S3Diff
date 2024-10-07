@@ -31,6 +31,12 @@ def main(args):
     # init and save configs
     config = OmegaConf.load(args.base_config)
 
+    if args.sd_path is None:
+        from huggingface_hub import snapshot_download
+        sd_path = snapshot_download(repo_id="stabilityai/sd-turbo")
+    else:
+        sd_path = args.sd_path
+    
     accelerator = Accelerator(
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         mixed_precision=args.mixed_precision,
@@ -58,7 +64,7 @@ def main(args):
     net_de.eval()
 
     # initialize net_sr
-    net_sr = S3Diff(lora_rank_unet=args.lora_rank_unet, lora_rank_vae=args.lora_rank_vae, sd_path=args.sd_path, pretrained_path=args.pretrained_path)
+    net_sr = S3Diff(lora_rank_unet=args.lora_rank_unet, lora_rank_vae=args.lora_rank_vae, sd_path=sd_path, pretrained_path=args.pretrained_path)
     net_sr.set_train()
 
     if args.enable_xformers_memory_efficient_attention:
