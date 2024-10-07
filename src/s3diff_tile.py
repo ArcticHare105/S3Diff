@@ -45,6 +45,9 @@ class S3Diff(torch.nn.Module):
     def __init__(self, sd_path=None, pretrained_path=None, lora_rank_unet=32, lora_rank_vae=16, block_embedding_dim=64, args=None):
         super().__init__()
         self.args = args
+        self.latent_tiled_size = args.latent_tiled_size
+        self.latent_tiled_overlap = args.latent_tiled_overlap
+
         self.tokenizer = AutoTokenizer.from_pretrained(sd_path, subfolder="tokenizer")
         self.text_encoder = CLIPTextModel.from_pretrained(sd_path, subfolder="text_encoder").cuda()
         self.sched = make_1step_sched(sd_path)
@@ -294,7 +297,7 @@ class S3Diff(torch.nn.Module):
 
         ## add tile function
         _, _, h, w = lq_latent.size()
-        tile_size, tile_overlap = (self.args.latent_tiled_size, self.args.latent_tiled_overlap)
+        tile_size, tile_overlap = (self.latent_tiled_size, self.latent_tiled_overlap)
         if h * w <= tile_size * tile_size:
             print(f"[Tiled Latent]: the input size is tiny and unnecessary to tile.")
             pos_model_pred = self.unet(lq_latent, self.timesteps, encoder_hidden_states=pos_caption_enc).sample
@@ -406,6 +409,12 @@ class S3Diff(torch.nn.Module):
 
         torch.save(sd, outf)
 
+    def _set_latent_tile(self,
+        latent_tiled_size = 96,
+        latent_tiled_overlap = 32):
+        self.latent_tiled_size = latent_tiled_size
+        self.latent_tiled_overlap = latent_tiled_overlap
+    
     def _init_tiled_vae(self,
             encoder_tile_size = 256,
             decoder_tile_size = 256,
