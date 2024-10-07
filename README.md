@@ -56,8 +56,8 @@
 ## <a name="visual_comparison"></a>:chart_with_upwards_trend: Visual Comparison
 
 ### Image Slide Results
-[<img src="assets/pic/imgsli1.png" height="220px"/>](https://imgsli.com/MzAzNjIy) [<img src="assets/pic/imgsli2.png" height="220px"/>](https://imgsli.com/MzAzNjQ1)  [<img src="assets/pic/imgsli3.png" height="220px"/>](https://imgsli.com/MzAzNjU4)
-[<img src="assets/pic/imgsli4.png" height="256px"/>](https://imgsli.com/MzAzNjU5) [<img src="assets/pic/imgsli5.png" height="256px"/>](https://imgsli.com/MzAzNjI2)
+[<img src="assets/pic/imgsli1.png" height="240px"/>](https://imgsli.com/MzAzNjIy) [<img src="assets/pic/imgsli2.png" height="240px"/>](https://imgsli.com/MzAzNjQ1)  [<img src="assets/pic/imgsli3.png" height="240px"/>](https://imgsli.com/MzAzNjU4)
+[<img src="assets/pic/imgsli4.png" height="278px"/>](https://imgsli.com/MzAzNjU5) [<img src="assets/pic/imgsli5.png" height="278px"/>](https://imgsli.com/MzAzNjI2)
 ### Synthesis Dataset
 
 <img src=assets/pic/div2k_comparison.jpg>
