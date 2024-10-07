@@ -31,7 +31,7 @@ from utils.util_image import ImageSpliterTh
 from my_utils.utils import instantiate_from_config
 from pathlib import Path
 from utils import util_image
-
+from utils.wavelet_color import wavelet_color_fix, adain_color_fix
 
 def evaluate(in_path, ref_path, ntest):
 
