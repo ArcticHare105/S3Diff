@@ -1,6 +1,7 @@
 import os
 import gc
 import tqdm
+import math
 import lpips
 import pyiqa
 import argparse
@@ -174,6 +175,10 @@ def main(args):
         im_lr_resize_norm = torch.clamp(im_lr_resize_norm, -1.0, 1.0)
         resize_h, resize_w = im_lr_resize_norm.shape[2:]
 
+        pad_h = (math.ceil(resize_h / 64)) * 64 - resize_h
+        pad_w = (math.ceil(resize_w / 64)) * 64 - resize_w
+        im_lr_resize_norm = F.pad(im_lr_resize_norm, pad=(0, pad_w, 0, pad_h), mode='reflect')
+        
         B = im_lr_resize.size(0)
         with torch.no_grad():
             # forward pass
