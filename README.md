@@ -93,7 +93,7 @@ We train the S3Diff on [LSDIR](https://github.com/ofsoundof/LSDIR), following [S
 
 #### Step3: Training for S3Diff
 
-Please modify the paths to datasets in `configs/sr.yaml`
+Please modify the paths to training datasets in `configs/sr.yaml`
 Then run:
 
 ```bash
@@ -123,7 +123,7 @@ We enable automatic model download in our code, if you need to conduct offline i
 
 #### Step3: Inference for S3Diff
 
-Please add the paths to datasets in `configs/sr_test.yaml` and the path of GT folder in `run_inference.sh`
+Please add the paths to evaluate datasets in `configs/sr_test.yaml` and the path of GT folder in `run_inference.sh`
 Then run:
 
 ```bash
