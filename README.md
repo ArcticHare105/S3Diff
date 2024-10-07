@@ -87,19 +87,34 @@ conda env create -f environment.yaml
 ## <a name="training"></a> :wrench: Training
 
 #### Step1: Download the pretrained models
-Download the pretrained model [SD-Turbo](https://huggingface.co/stabilityai/sd-turbo)
+We enable automatic model download in our code, if you need to conduct offline training, download the pretrained model [SD-Turbo](https://huggingface.co/stabilityai/sd-turbo)
 
 #### Step2: Prepare training data
 We train the S3Diff on [LSDIR](https://github.com/ofsoundof/LSDIR), following [SeeSR](https://github.com/cswry/SeeSR) and [OSEDiff](https://github.com/cswry/OSEDiff).
 
 #### Step3: Training for S3Diff
 
-Please modify the paths to datasets in `configs/sr.yaml` and the paths to pretrained model in `run_training.sh`
+Please modify the paths to datasets in `configs/sr.yaml`
 Then run:
 
 ```bash
 sh run_training.sh
 ```
+
+If you need to conduct offline training, modify `run_training.sh` as follows, and fill in with your paths:
+
+```bash
+accelerate launch --num_processes=4 --gpu_ids="0,1,2,3" --main_process_port 29300 src/train_s3diff.py \
+    --sd_path="path_to_checkpoints/sd-turbo" \
+    --de_net_path="assets/mm-realsr/de_net.pth" \
+    --output_dir="./output" \
+    --resolution=512 \
+    --train_batch_size=4 \
+    --enable_xformers_memory_efficient_attention \
+    --viz_freq 25
+```
+
+and the paths to pretrained model in `run_training.sh`
 
 ## <a name="inference"></a> 💫 Inference
 
