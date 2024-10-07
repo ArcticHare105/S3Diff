@@ -125,7 +125,7 @@ pip install gradio
 Please modify the paths to sd-turbo and s3diff in `src/gradio_s2diff.py`, and then run the following command to interact with the gradio website, have fun. 🤗
 
 ```
-python src/gradio_s2diff.py 
+python src/gradio_s3diff.py 
 ```
 ![s3diff](assets/pic/gradio.png)
 
