@@ -33,6 +33,7 @@
 
 ## <a name="update"></a>:new: Update
 
+- **2024.10.07**: Add gradio demo 🚀
 - **2024.09.25**: The code is released :fire:
 - **2024.09.25**: This repo is released :fire:
 <!-- - [**History Updates** >]() -->
@@ -113,6 +114,20 @@ Then run:
 ```bash
 sh run_inference.sh
 ```
+
+#### Gradio Demo
+
+Please install Gradio first
+```bash
+pip install gradio
+```
+
+Please modify the paths to sd-turbo and s3diff in `src/gradio_s2diff.py`, and then run the following command to interact with the gradio website, have fun. 🤗
+
+```
+python src/gradio_s2diff.py 
+```
+![s3diff](assets/pic/gradio.png)
 
 ## :smiley: Citation
 
