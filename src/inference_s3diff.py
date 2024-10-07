@@ -97,6 +97,18 @@ def evaluate(in_path, ref_path, ntest):
 def main(args):
     config = OmegaConf.load(args.base_config)
 
+    if args.pretrained_path is None:
+        from huggingface_hub import hf_hub_download
+        pretrained_path = hf_hub_download(repo_id="zhangap/S3Diff", filename="s3diff.pkl")
+    else:
+        pretrained_path = args.pretrained_path
+
+    if args.sd_path is None:
+        from huggingface_hub import snapshot_download
+        sd_path = snapshot_download(repo_id="stabilityai/sd-turbo")
+    else:
+        sd_path = args.sd_path
+    
     accelerator = Accelerator(
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         mixed_precision=args.mixed_precision,
@@ -118,7 +130,7 @@ def main(args):
         os.makedirs(os.path.join(args.output_dir, "eval"), exist_ok=True)
 
     # initialize net_sr
-    net_sr = S3Diff(lora_rank_unet=args.lora_rank_unet, lora_rank_vae=args.lora_rank_vae, sd_path=args.sd_path, pretrained_path=args.pretrained_path, args=args)
+    net_sr = S3Diff(lora_rank_unet=args.lora_rank_unet, lora_rank_vae=args.lora_rank_vae, sd_path=sd_path, pretrained_path=pretrained_path, args=args)
     net_sr.set_eval()
 
     net_de = DEResNet(num_in_ch=3, num_degradation=2)
