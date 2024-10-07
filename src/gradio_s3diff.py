@@ -25,12 +25,22 @@ tensor_transforms = transforms.Compose([
 args = parse_args_paired_testing()
 
 # Load scheduler, tokenizer and models.
-pretrained_model_path = 'checkpoint-path/s3diff.pkl'
-t2i_path = 'sd-turbo-path'
+if args.pretrained_path is None:
+    from huggingface_hub import hf_hub_download
+    pretrained_path = hf_hub_download(repo_id="zhangap/S3Diff", filename="s3diff.pkl")
+else:
+    pretrained_path = args.pretrained_path
+
+if args.sd_path is None:
+    from huggingface_hub import snapshot_download
+    sd_path = snapshot_download(repo_id="stabilityai/sd-turbo")
+else:
+    sd_path = args.sd_path
+
 de_net_path = 'assets/mm-realsr/de_net.pth'
 
 # initialize net_sr
-net_sr = S3Diff(lora_rank_unet=args.lora_rank_unet, lora_rank_vae=args.lora_rank_vae, sd_path=t2i_path, pretrained_path=pretrained_model_path, args=args)
+net_sr = S3Diff(lora_rank_unet=args.lora_rank_unet, lora_rank_vae=args.lora_rank_vae, sd_path=sd_path, pretrained_path=pretrained_path, args=args)
 net_sr.set_eval()
 
 # initalize degradation estimation network
