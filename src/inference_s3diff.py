@@ -179,7 +179,8 @@ def main(args):
             im_lr,
             size=(ori_h * config.sf,
                   ori_w * config.sf),
-            mode='bicubic',
+            mode='bilinear',
+            align_corners=True
             )
 
         im_lr_resize = im_lr_resize.contiguous() 

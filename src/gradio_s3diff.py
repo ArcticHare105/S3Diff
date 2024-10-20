@@ -86,7 +86,8 @@ def process(
         im_lr,
         size=(int(ori_h * scale_factor),
               int(ori_w * scale_factor)),
-        mode='bicubic',
+        mode='bilinear',
+        align_corners=True
         )
     im_lr_resize = im_lr_resize.contiguous() 
     im_lr_resize_norm = im_lr_resize * 2 - 1.0
