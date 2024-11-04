@@ -87,7 +87,7 @@ def process(
         size=(int(ori_h * scale_factor),
               int(ori_w * scale_factor)),
         mode='bilinear',
-        align_corners=True
+        align_corners=False # align_corners with this model causes the output to be shifted, presumably due to training without align_corners
         )
     im_lr_resize = im_lr_resize.contiguous() 
     im_lr_resize_norm = im_lr_resize * 2 - 1.0
