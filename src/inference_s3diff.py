@@ -180,7 +180,7 @@ def main(args):
             size=(ori_h * config.sf,
                   ori_w * config.sf),
             mode='bilinear',
-            align_corners=True
+            align_corners=False # align_corners with this model causes the output to be shifted, presumably due to training without align_corners
             )
 
         im_lr_resize = im_lr_resize.contiguous() 
