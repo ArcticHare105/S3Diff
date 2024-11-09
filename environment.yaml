@@ -27,7 +27,7 @@ dependencies:
       - xformers>=0.0.20
       - streamlit-keyup==0.2.0
       - lpips
-      - peft
+      - peft==0.10.0
       - pyiqa
       - omegaconf
       - dominate
