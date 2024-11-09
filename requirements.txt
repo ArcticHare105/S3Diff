@@ -20,7 +20,7 @@ urllib3<1.27,>=1.25.4
 xformers>=0.0.20
 streamlit-keyup==0.2.0
 lpips
-peft
+peft==0.10.0
 pyiqa
 omegaconf
 dominate
